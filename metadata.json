@@ -1,0 +1,8 @@
+{
+  "name": "The Bass Lick Library - Sales Page",
+  "description": "High-converting US sales page for The Bass Lick Library, with a modern dark obsidian and amber aesthetic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
