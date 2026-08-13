@@ -44,7 +44,7 @@ const benefitsData: BenefitCard[] = [
     id: "impacto",
     title: "HIGH-IMPACT CHOPS",
     description: "Expressive, head-turning fills designed for standout moments that elevate your playing and surprise the crowd.",
-    label: "Technique & Speed",
+    label: "Phrasing & Timing",
     iconName: "flame"
   },
   {
@@ -71,8 +71,8 @@ const benefitsData: BenefitCard[] = [
   {
     id: "membros",
     title: "EXCLUSIVE MEMBER PORTAL",
-    description: "Stream breakdown lessons and access all downloadable PDF tabs organized in a clean, modern, high-speed portal.",
-    label: "24/7 Member Portal",
+    description: "Stream video breakdown lessons and access audio backing tracks organized in a clean, modern, high-speed portal.",
+    label: "Private Member Portal",
     iconName: "lock"
   }
 ];
@@ -173,9 +173,20 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/40 via-white/5 to-brand-amber/40 rounded-2xl p-[1px]">
               <div className="h-full w-full bg-brand-dark rounded-2xl overflow-hidden relative">
                 <img
-                  src="https://i.ibb.co/b5QMkCN4/Chat-GPT-Image-10-de-ago-de-2026-21-04-51.webp"
+                  src="/the-bass-lick-library-mockup.webp"
                   alt="The Bass Lick Library"
+                  width={600}
+                  height={600}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (target.src !== "https://i.ibb.co/b5QMkCN4/Chat-GPT-Image-10-de-ago-de-2026-21-04-51.webp") {
+                      target.src = "https://i.ibb.co/b5QMkCN4/Chat-GPT-Image-10-de-ago-de-2026-21-04-51.webp";
+                    }
+                  }}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
@@ -214,9 +225,17 @@ export default function App() {
             {/* Glowing border effect */}
             <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange to-brand-amber rounded-2xl blur opacity-10 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none" />
             <img
-              src="https://i.ibb.co/Q7c9pnk0/Chat-GPT-Image-10-de-ago-de-2026-20-44-55.webp"
+              src="/sample-licks-fills.webp"
               alt="Sample Licks & Fills"
+              loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement;
+                if (target.src !== "https://i.ibb.co/Q7c9pnk0/Chat-GPT-Image-10-de-ago-de-2026-20-44-55.webp") {
+                  target.src = "https://i.ibb.co/Q7c9pnk0/Chat-GPT-Image-10-de-ago-de-2026-20-44-55.webp";
+                }
+              }}
               className="w-full h-auto object-cover rounded-2xl relative z-10 transition-transform duration-500 hover:scale-[1.01]"
             />
           </div>
@@ -228,7 +247,7 @@ export default function App() {
           
           <div className="text-center space-y-2">
             <span className="text-xs font-mono uppercase tracking-[0.25em] text-brand-orange">
-              HD Video Lessons + PDF Tabs
+              HD Video Lessons + Backing Tracks
             </span>
             <h2 className="text-4xl md:text-5xl font-display font-extrabold italic tracking-tight text-white uppercase">
               Everything Included <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-amber px-2">Inside</span>
@@ -385,7 +404,7 @@ export default function App() {
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
                 <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md px-2">
-                  27.00
+                  27
                 </span>
               </div>
               <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
@@ -402,8 +421,8 @@ export default function App() {
                   "Full High-Quality Backing Tracks",
                   "Metronome Practice Speed Tracks",
                   "Slow Motion Breakdown Video Lessons",
-                  "Downloadable PDF Tabs & Sheet Music",
-                  "24/7 Member & Technical Support"
+                  "Complete High-Definition Video Lessons",
+                  "Direct Member Support"
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-3 text-slate-300 text-sm">
                     <span className="text-brand-orange font-bold text-base select-none leading-none shrink-0">✔</span>
@@ -415,8 +434,10 @@ export default function App() {
 
             {/* Big Action Button */}
             <div className="space-y-4">
-              <button
-                onClick={handleOpenCheckout}
+              <a
+                href="https://pay.hotmart.com/T107153142I"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-5 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold text-white text-base tracking-wider uppercase hover:opacity-95 transition-all cursor-pointer shadow-xl shadow-brand-orange/25 flex justify-center items-center gap-2 group relative overflow-hidden"
               >
                 {/* Simple shine effect */}
@@ -424,7 +445,7 @@ export default function App() {
                 
                 GET INSTANT ACCESS
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </button>
+              </a>
 
               {/* Secure checkout seals */}
               <div className="flex justify-center items-center gap-6 text-[10px] font-mono text-slate-400 pt-2 border-t border-white/[0.04]">

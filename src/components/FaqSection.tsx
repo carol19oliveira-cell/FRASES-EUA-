@@ -17,12 +17,12 @@ const faqData: FAQItem[] = [
   {
     id: "acesso",
     question: "How and when do I receive access?",
-    answer: "Instant Digital Access! As soon as your payment is confirmed, you'll receive an automated email with direct access to our member portal, video breakdown lessons, audio backing tracks, and downloadable PDF tabs."
+    answer: "Instant Digital Access! As soon as your payment is confirmed, you'll receive an automated email with direct access to our member portal, video breakdown lessons, and audio backing tracks."
   },
   {
     id: "vitalicio",
     question: "Is this a one-time purchase with lifetime access?",
-    answer: "100% Yes. You pay once and keep full access forever. Download all PDF tabs and backing tracks, stream the lesson videos anytime at your own pace with zero subscriptions or recurring fees."
+    answer: "100% Yes. You pay once and keep full access forever. Download all backing tracks and stream the lesson videos anytime at your own pace with zero subscriptions or recurring fees."
   },
   {
     id: "estilo",

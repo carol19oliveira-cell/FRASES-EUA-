@@ -111,7 +111,7 @@ export default function CheckoutModal({ isOpen, onClose, price }: CheckoutModalP
                       Billing & Access Details
                     </h3>
                     <p className="text-xs text-slate-400 mt-1">
-                      Enter your details below to receive your private portal login and downloadable PDF tabs.
+                      Enter your details below to receive your private portal login and instant video access.
                     </p>
                   </div>
 
@@ -371,8 +371,8 @@ export default function CheckoutModal({ isOpen, onClose, price }: CheckoutModalP
                     </div>
                     <ul className="list-disc list-inside space-y-1 text-slate-400 pl-1">
                       <li>Check your inbox and spam folder.</li>
-                      <li>Download the complete sheet music & PDF tabs.</li>
-                      <li>Stream the video breakdowns in your private portal.</li>
+                      <li>Stream the video breakdown lessons in your private portal.</li>
+                      <li>Practice with high-quality audio backing tracks.</li>
                     </ul>
                   </div>
 
