@@ -399,12 +399,12 @@ export default function App() {
 
             <div className="space-y-1">
               <p className="text-slate-400 text-sm font-medium">
-                Regular Price <span className="line-through text-red-500 font-bold">$67.00</span> — Special Today:
+                Regular Price <span className="line-through text-red-500 font-bold">$27</span> — Special Today:
               </p>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
                 <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md px-2">
-                  27
+                  19
                 </span>
               </div>
               <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
@@ -485,7 +485,7 @@ export default function App() {
       <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
-        price={27.0}
+        price={19.0}
       />
     </div>
   );
