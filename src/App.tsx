@@ -155,7 +155,7 @@ export default function App() {
       <main className="w-full space-y-24 py-12 md:py-20">
         
         {/* ================= HERO SECTION ================= */}
-        <section id="hero-section" className="text-center space-y-12 max-w-6xl mx-auto px-6">
+        <section id="hero-section" className="text-center space-y-8 max-w-6xl mx-auto px-6">
           {/* Main Headings */}
           <div className="space-y-4 max-w-4xl mx-auto">
             <h2 className="text-lg md:text-xl font-mono uppercase tracking-[0.25em] text-slate-400 font-medium">
@@ -166,14 +166,14 @@ export default function App() {
             </h1>
           </div>
 
-          {/* Cover Artwork directly below headline */}
+          {/* Cover Artwork directly below headline with fast-loading optimization */}
           <div className="w-full max-w-sm md:max-w-md mx-auto aspect-square relative group">
             {/* Glowing border frame */}
             <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange to-brand-amber rounded-2xl blur opacity-35 group-hover:opacity-60 transition-opacity duration-300" />
             <div className="absolute inset-0 bg-gradient-to-tr from-brand-orange/40 via-white/5 to-brand-amber/40 rounded-2xl p-[1px]">
               <div className="h-full w-full bg-brand-dark rounded-2xl overflow-hidden relative">
                 <img
-                  src="/the-bass-lick-library-mockup.webp"
+                  src="/hero-artwork.webp"
                   alt="The Bass Lick Library"
                   width={600}
                   height={600}
@@ -183,8 +183,8 @@ export default function App() {
                   referrerPolicy="no-referrer"
                   onError={(e) => {
                     const target = e.currentTarget as HTMLImageElement;
-                    if (target.src !== "https://i.ibb.co/b5QMkCN4/Chat-GPT-Image-10-de-ago-de-2026-21-04-51.webp") {
-                      target.src = "https://i.ibb.co/b5QMkCN4/Chat-GPT-Image-10-de-ago-de-2026-21-04-51.webp";
+                    if (target.src !== "https://i.ibb.co/N2R84rKj/Chat-GPT-Image-10-de-ago-de-2026-21-04-51-1.webp") {
+                      target.src = "https://i.ibb.co/N2R84rKj/Chat-GPT-Image-10-de-ago-de-2026-21-04-51-1.webp";
                     }
                   }}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -194,7 +194,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Headline description paragraph, now below the image */}
+          {/* Headline description paragraph */}
           <div className="space-y-6">
             <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto font-sans leading-relaxed px-4">
               An exclusive library of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold">HIGH-IMPACT</span> bass licks, fills, and runs designed for you to practice, adapt, and craft basslines that command attention.
