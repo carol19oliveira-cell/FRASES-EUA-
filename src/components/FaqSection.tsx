@@ -17,7 +17,7 @@ const faqData: FAQItem[] = [
   {
     id: "acesso",
     question: "How and when do I receive access?",
-    answer: "Instant Digital Access! As soon as your payment is confirmed, you'll receive an automated email with direct access to our member portal, video breakdown lessons, and audio backing tracks."
+    answer: "Instant Digital Access! As soon as your payment is confirmed, you'll receive an automated email with direct access to our member portal, video breakdown lessons, audio backing tracks, and full downloadable bass tablatures."
   },
   {
     id: "vitalicio",

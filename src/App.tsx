@@ -62,6 +62,13 @@ const benefitsData: BenefitCard[] = [
     iconName: "sliders"
   },
   {
+    id: "tablaturas",
+    title: "FULL BASS TABLATURES (PDF)",
+    description: "Note-for-note bass tabs for every lick, making it easier to learn the notes, fingerings, and fretboard positions.",
+    label: "Accurate Tabs Included",
+    iconName: "fileText"
+  },
+  {
     id: "acesso",
     title: "INSTANT DIGITAL ACCESS",
     description: "As soon as your order is confirmed, you get immediate access to the full library delivered straight to your inbox.",
@@ -71,7 +78,7 @@ const benefitsData: BenefitCard[] = [
   {
     id: "membros",
     title: "EXCLUSIVE MEMBER PORTAL",
-    description: "Stream video breakdown lessons and access audio backing tracks organized in a clean, modern, high-speed portal.",
+    description: "Stream video breakdown lessons, download tabs, and access audio backing tracks organized in a clean, modern, high-speed portal.",
     label: "Private Member Portal",
     iconName: "lock"
   }
@@ -247,7 +254,7 @@ export default function App() {
           
           <div className="text-center space-y-2">
             <span className="text-xs font-mono uppercase tracking-[0.25em] text-brand-orange">
-              HD Video Lessons + Backing Tracks
+              HD Video Lessons + Backing Tracks + Full Bass Tabs
             </span>
             <h2 className="text-4xl md:text-5xl font-display font-extrabold italic tracking-tight text-white uppercase">
               Everything Included <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-amber px-2">Inside</span>
@@ -399,12 +406,12 @@ export default function App() {
 
             <div className="space-y-1">
               <p className="text-slate-400 text-sm font-medium">
-                Regular Price <span className="line-through text-red-500 font-bold">$27</span> — Special Today:
+                Regular Price <span className="line-through text-red-500 font-bold">$32</span> — Special Today:
               </p>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
                 <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md px-2">
-                  19
+                  22
                 </span>
               </div>
               <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
@@ -417,6 +424,7 @@ export default function App() {
                   "Instant Private Member Portal Access",
                   "Pro Musical Licks & Fills",
                   "High-Impact Lead Chops & Runs",
+                  "Complete Note-for-Note Bass Tabs (PDF)",
                   "Rhythmic Grooves & Pocket Exercises",
                   "Full High-Quality Backing Tracks",
                   "Metronome Practice Speed Tracks",
@@ -485,7 +493,7 @@ export default function App() {
       <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
-        price={19.0}
+        price={22.0}
       />
     </div>
   );
