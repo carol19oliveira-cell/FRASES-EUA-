@@ -24,8 +24,6 @@ import {
   Target
 } from "lucide-react";
 
-// @ts-ignore
-import packCover from "./assets/images/pack_cover_art_1783708433651.jpg";
 import VideoPlayerMock from "./components/VideoPlayerMock";
 import FaqSection from "./components/FaqSection";
 import SocialProofToast from "./components/SocialProofToast";
@@ -187,13 +185,6 @@ export default function App() {
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    const target = e.currentTarget as HTMLImageElement;
-                    if (target.src !== "https://i.ibb.co/N2R84rKj/Chat-GPT-Image-10-de-ago-de-2026-21-04-51-1.webp") {
-                      target.src = "https://i.ibb.co/N2R84rKj/Chat-GPT-Image-10-de-ago-de-2026-21-04-51-1.webp";
-                    }
-                  }}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
@@ -234,15 +225,10 @@ export default function App() {
             <img
               src="/sample-licks-fills.webp"
               alt="Sample Licks & Fills"
+              width={1200}
+              height={675}
               loading="lazy"
               decoding="async"
-              referrerPolicy="no-referrer"
-              onError={(e) => {
-                const target = e.currentTarget as HTMLImageElement;
-                if (target.src !== "https://i.ibb.co/Q7c9pnk0/Chat-GPT-Image-10-de-ago-de-2026-20-44-55.webp") {
-                  target.src = "https://i.ibb.co/Q7c9pnk0/Chat-GPT-Image-10-de-ago-de-2026-20-44-55.webp";
-                }
-              }}
               className="w-full h-auto object-cover rounded-2xl relative z-10 transition-transform duration-500 hover:scale-[1.01]"
             />
           </div>
