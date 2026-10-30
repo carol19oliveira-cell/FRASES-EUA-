@@ -28,6 +28,7 @@ import VideoPlayerMock from "./components/VideoPlayerMock";
 import FaqSection from "./components/FaqSection";
 import SocialProofToast from "./components/SocialProofToast";
 import CheckoutModal from "./components/CheckoutModal";
+import TestimonialsSection from "./components/TestimonialsSection";
 import { BenefitCard } from "./types";
 
 const benefitsData: BenefitCard[] = [
@@ -285,6 +286,11 @@ export default function App() {
           </div>
         </section>
 
+        {/* ================= TESTIMONIALS SECTION ================= */}
+        <div className="!mt-8 md:!mt-12 w-full">
+          <TestimonialsSection />
+        </div>
+
         {/* ================= WHY STUDY PHRASES SECTION ================= */}
         <motion.section 
           initial={{ opacity: 0, y: 30 }}
@@ -397,7 +403,7 @@ export default function App() {
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
                 <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md px-2">
-                  22
+                  24
                 </span>
               </div>
               <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
@@ -479,7 +485,7 @@ export default function App() {
       <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
-        price={22.0}
+        price={24.0}
       />
     </div>
   );
