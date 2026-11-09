@@ -398,12 +398,12 @@ export default function App() {
 
             <div className="space-y-1">
               <p className="text-slate-400 text-sm font-medium">
-                Regular Price <span className="line-through text-red-500 font-bold">$32</span> — Special Today:
+                Regular Price <span className="line-through text-red-500 font-bold">$38</span> — Special Today:
               </p>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
                 <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md px-2">
-                  24
+                  26
                 </span>
               </div>
               <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
@@ -435,15 +435,29 @@ export default function App() {
             {/* Big Action Button */}
             <div className="space-y-4">
               <a
+                id="btn-checkout-hotmart"
                 href="https://pay.hotmart.com/T107153142I"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-5 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold text-white text-base tracking-wider uppercase hover:opacity-95 transition-all cursor-pointer shadow-xl shadow-brand-orange/25 flex justify-center items-center gap-2 group relative overflow-hidden"
+                onClick={(e) => {
+                  try {
+                    // Preserva os parâmetros UTM atuais da URL no link da Hotmart
+                    const currentParams = window.location.search;
+                    if (currentParams && currentParams.length > 1) {
+                      const baseHotmart = "https://pay.hotmart.com/T107153142I";
+                      const cleanParams = currentParams.startsWith('?') ? currentParams.substring(1) : currentParams;
+                      e.currentTarget.href = `${baseHotmart}?${cleanParams}`;
+                    }
+                  } catch (err) {
+                    // fallback silencioso
+                  }
+                }}
+                className="btn-checkout go-to-checkout utmify-btn w-full py-5 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold text-white text-base tracking-wider uppercase hover:opacity-95 transition-all cursor-pointer shadow-xl shadow-brand-orange/25 flex justify-center items-center gap-2 group relative overflow-hidden"
               >
                 {/* Simple shine effect */}
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-shine" />
                 
-                GET INSTANT ACCESS
+                <span>GET INSTANT ACCESS</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
 
@@ -485,7 +499,7 @@ export default function App() {
       <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
-        price={24.0}
+        price={26.0}
       />
     </div>
   );
