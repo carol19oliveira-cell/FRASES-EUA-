@@ -161,7 +161,7 @@ export default function CheckoutModal({ isOpen, onClose, price }: CheckoutModalP
                       type="submit"
                       className="w-full py-4 mt-2 rounded-xl bg-gradient-to-r from-brand-orange to-brand-amber font-bold text-white text-base hover:opacity-90 transition-all cursor-pointer shadow-lg shadow-brand-orange/20 flex justify-center items-center gap-2"
                     >
-                      Proceed to Payment • ${price.toFixed(2)}
+                      Proceed to Payment • ${price.toFixed(2)} USD
                     </button>
                   </form>
                 </motion.div>
@@ -258,7 +258,7 @@ export default function CheckoutModal({ isOpen, onClose, price }: CheckoutModalP
                             Processing Secure Order...
                           </>
                         ) : (
-                          `Complete Order • $${price.toFixed(2)}`
+                          `Complete Order • $${price.toFixed(2)} USD`
                         )}
                       </button>
                     </div>

@@ -398,16 +398,19 @@ export default function App() {
 
             <div className="space-y-1">
               <p className="text-slate-400 text-sm font-medium">
-                Regular Price <span className="line-through text-red-500 font-bold">$38</span> — Special Today:
+                Regular Price <span className="line-through text-red-500 font-bold">$38 USD</span> — Special Today:
               </p>
-              <div className="flex items-center justify-center gap-2">
+              <div className="flex items-baseline justify-center gap-1.5">
                 <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
-                <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md px-2">
+                <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md">
                   26
+                </span>
+                <span className="text-xl md:text-2xl font-bold font-mono text-brand-orange tracking-wider ml-1">
+                  USD
                 </span>
               </div>
               <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
-                * One-time payment. Lifetime access. No subscriptions.
+                * One-time payment in USD. Lifetime access. No subscriptions.
               </p>
 
               <div className="pt-6 pb-4 border-t border-white/[0.05] text-left max-w-xs md:max-w-sm mx-auto space-y-2.5">
