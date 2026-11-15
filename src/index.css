@@ -45,3 +45,39 @@
   scrollbar-width: none;
 }
 
+/* Seamless Black Friday scrolling banner */
+@keyframes blackfriday-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-blackfriday-marquee {
+  display: flex;
+  width: max-content;
+  animation: blackfriday-marquee 56s linear infinite;
+  will-change: transform;
+}
+
+/* Ticking clock hands animation */
+@keyframes clock-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.clock-hand-hour {
+  transform-origin: 12px 12px;
+  animation: clock-rotate 12s linear infinite;
+}
+
+.clock-hand-minute {
+  transform-origin: 12px 12px;
+  animation: clock-rotate 2.5s linear infinite;
+}

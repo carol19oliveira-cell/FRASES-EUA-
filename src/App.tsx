@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { 
   Check, 
-  Sparkles, 
   Music, 
   FileText, 
   Zap, 
@@ -83,34 +82,42 @@ const benefitsData: BenefitCard[] = [
   }
 ];
 
+function TickingClockIcon({ className = "w-4 h-4 text-brand-orange" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="12" x2="12" y2="8" className="clock-hand-hour" />
+      <line x1="12" y1="12" x2="12" y2="5.5" className="clock-hand-minute" />
+    </svg>
+  );
+}
+
 export default function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
-  // Countdown Timer of 15 minutes
-  const [timeLeft, setTimeLeft] = useState(() => {
-    const saved = localStorage.getItem("bass_countdown_time");
-    if (saved) {
-      const parsed = parseInt(saved, 10);
-      if (!isNaN(parsed) && parsed > 0) return parsed;
+  const buildHotmartUrl = () => {
+    const baseHotmart = "https://pay.hotmart.com/T107153142I";
+    try {
+      const currentParams = window.location.search;
+      if (currentParams && currentParams.length > 1) {
+        const cleanParams = currentParams.startsWith("?")
+          ? currentParams.substring(1)
+          : currentParams;
+        return `${baseHotmart}?${cleanParams}`;
+      }
+    } catch {
+      // fallback silencioso
     }
-    return 15 * 60;
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        const nextTime = prev <= 1 ? 15 * 60 : prev - 1;
-        localStorage.setItem("bass_countdown_time", nextTime.toString());
-        return nextTime;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return baseHotmart;
   };
 
   // Helper to render lucide icons dynamically
@@ -151,10 +158,13 @@ export default function App() {
       <div className="absolute bottom-[20%] left-[-15%] w-[600px] h-[600px] ambient-glow-orange pointer-events-none opacity-30" />
 
       {/* Header Announcement Badge */}
-      <div className="w-full bg-red-600 py-2 px-4 text-center relative z-50">
-        <p className="text-xs md:text-sm font-bold text-white flex items-center justify-center gap-2 truncate">
-          <Clock className="w-4 h-4 text-white animate-pulse flex-shrink-0" />
-          <span>🔥 Final days to claim your exclusive promotional discount!</span>
+      <div className="w-full bg-gradient-to-r from-[#090d20] via-[#2b1407] to-[#090d20] border-b border-brand-orange/40 py-2.5 px-2 sm:px-4 text-center relative z-50">
+        <p className="text-[10px] sm:text-xs md:text-sm font-display font-extrabold tracking-[0.06em] sm:tracking-[0.14em] uppercase text-white flex items-center justify-center gap-1.5 sm:gap-2.5 whitespace-nowrap">
+          <TickingClockIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-orange flex-shrink-0" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-brand-amber">
+            EARLY BLACK FRIDAY DEAL — ENDS SOON
+          </span>
+          <TickingClockIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-orange flex-shrink-0" />
         </p>
       </div>
 
@@ -202,10 +212,10 @@ export default function App() {
             <div className="flex justify-center items-center">
               <button 
                 onClick={handleScrollToOffer}
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold text-white text-sm tracking-wide uppercase hover:opacity-90 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/25 group"
+                className="px-6 sm:px-8 py-4 rounded-xl bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold text-white text-xs sm:text-sm tracking-wide uppercase hover:opacity-90 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/25 group"
               >
-                Get My Bass Lick Library
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <span>GET MY BASS LICK LIBRARY</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 shrink-0" />
               </button>
             </div>
           </div>
@@ -377,41 +387,70 @@ export default function App() {
         </motion.section>
 
         {/* ================= CTA BUY SECTION ================= */}
-        <section id="cta-section" className="py-12 relative z-10 max-w-xl mx-auto px-6 text-center">
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-brand-amber rounded-3xl blur-2xl opacity-10 -z-10" />
-
-          {/* Urgency countdown timer */}
-          <div className="mb-6 inline-flex items-center gap-2 bg-brand-orange/10 border border-brand-orange/25 px-5 py-2.5 rounded-full shadow-inner animate-pulse">
-            <Clock className="w-4 h-4 text-brand-orange" />
-            <span className="text-sm md:text-base font-semibold text-white tracking-wide">
-              Special Discount Offer Expires In: <span className="text-brand-orange font-mono font-bold">{formatTime(timeLeft)}</span>
-            </span>
+        <section id="cta-section" className="py-12 relative z-10 w-full">
+          {/* Full-bleed Scrolling Black Friday Ribbon above card */}
+          <div className="w-full bg-black border-y border-yellow-400/45 py-3 overflow-hidden select-none mb-10 shadow-lg shadow-black/50">
+            <div className="animate-blackfriday-marquee">
+              {[0, 1].map((loopIdx) => (
+                <div key={loopIdx} className="flex items-center shrink-0">
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <span
+                      key={`${loopIdx}-${i}`}
+                      className="inline-flex items-center gap-3 px-4 font-display font-black text-xs sm:text-sm uppercase tracking-[0.22em]"
+                    >
+                      <span className="text-yellow-400">BLACK FRIDAY</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 inline-block" />
+                      <span className="text-white">BLACK FRIDAY</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 inline-block" />
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Golden Badge Border styling */}
-          <div className="relative rounded-2xl p-8 md:p-12 bg-gradient-to-b from-[#121634]/90 to-brand-card/90 border border-brand-orange/30 shadow-2xl space-y-8">
-            <div className="flex justify-center">
-              <span className="px-4 py-1.5 rounded-full bg-brand-orange text-white font-mono text-xs font-bold uppercase tracking-wider animate-pulse shadow-md shadow-brand-orange/20">
-                START TODAY & LEVEL UP
-              </span>
-            </div>
+          <div className="max-w-xl mx-auto px-6 text-center relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-brand-amber rounded-3xl blur-2xl opacity-10 -z-10" />
 
-            <div className="space-y-1">
-              <p className="text-slate-400 text-sm font-medium">
-                Regular Price <span className="line-through text-red-500 font-bold">$38 USD</span> — Special Today:
-              </p>
-              <div className="flex items-baseline justify-center gap-1.5">
-                <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
-                <span className="text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md">
-                  26
+            {/* Golden Badge Border styling */}
+            <div className="relative rounded-2xl bg-gradient-to-b from-[#121634]/90 to-brand-card/90 border border-brand-orange/30 shadow-2xl">
+            <div className="p-7 sm:p-8 md:p-12 space-y-8">
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <span className="px-4 py-1.5 rounded-full bg-brand-orange text-white font-mono text-xs font-bold uppercase tracking-wider shadow-md shadow-brand-orange/20">
+                  BLACK FRIDAY SPECIAL
                 </span>
-                <span className="text-xl md:text-2xl font-bold font-mono text-brand-orange tracking-wider ml-1">
-                  USD
+                <span className="px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 font-mono text-xs font-extrabold uppercase tracking-wider">
+                  50% OFF
                 </span>
               </div>
-              <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
-                * One-time payment in USD. Lifetime access. No subscriptions.
-              </p>
+
+              <div className="space-y-3">
+                <h3 className="text-xl sm:text-2xl font-display font-extrabold text-white tracking-tight leading-snug">
+                  Unlock Your Bass Lick Library!
+                </h3>
+                <p className="text-sm sm:text-base font-mono uppercase tracking-[0.2em] text-brand-amber font-bold pt-1">
+                  for just
+                </p>
+
+                <div className="pt-2 space-y-1">
+                <p className="text-slate-400 text-sm font-medium flex items-center justify-center gap-2">
+                  <span>Regular Price</span>
+                  <span className="line-through text-red-400 font-bold text-base">$38.00</span>
+                  <span>— Today Only:</span>
+                </p>
+                <div className="flex items-baseline justify-center gap-1.5 pt-1">
+                  <span className="text-3xl md:text-4xl font-extrabold text-brand-orange">$</span>
+                  <span className="text-6xl sm:text-7xl md:text-8xl font-black font-display text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 leading-none drop-shadow-md">
+                    19.00
+                  </span>
+                  <span className="text-lg md:text-xl font-bold font-mono text-brand-orange tracking-wider ml-1">
+                    USD
+                  </span>
+                </div>
+                <p className="text-2xs font-mono text-brand-amber uppercase tracking-widest pt-2">
+                  * One-time payment in USD. Lifetime access. No subscriptions.
+                </p>
+              </div>
 
               <div className="pt-6 pb-4 border-t border-white/[0.05] text-left max-w-xs md:max-w-sm mx-auto space-y-2.5">
                 {[
@@ -443,29 +482,19 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => {
-                  try {
-                    // Preserva os parâmetros UTM atuais da URL no link da Hotmart
-                    const currentParams = window.location.search;
-                    if (currentParams && currentParams.length > 1) {
-                      const baseHotmart = "https://pay.hotmart.com/T107153142I";
-                      const cleanParams = currentParams.startsWith('?') ? currentParams.substring(1) : currentParams;
-                      e.currentTarget.href = `${baseHotmart}?${cleanParams}`;
-                    }
-                  } catch (err) {
-                    // fallback silencioso
-                  }
+                  e.currentTarget.href = buildHotmartUrl();
                 }}
-                className="btn-checkout go-to-checkout utmify-btn w-full py-5 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold text-white text-base tracking-wider uppercase hover:opacity-95 transition-all cursor-pointer shadow-xl shadow-brand-orange/25 flex justify-center items-center gap-2 group relative overflow-hidden"
+                className="btn-checkout go-to-checkout utmify-btn w-full py-5 px-4 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-amber font-extrabold text-white text-sm sm:text-base tracking-wider uppercase hover:opacity-95 transition-all cursor-pointer shadow-xl shadow-brand-orange/25 flex justify-center items-center gap-2 group relative overflow-hidden"
               >
                 {/* Simple shine effect */}
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-shine" />
                 
-                <span>GET INSTANT ACCESS</span>
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <span>GET MY BASS LICK LIBRARY — $19</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 shrink-0" />
               </a>
 
               {/* Secure checkout seals */}
-              <div className="flex justify-center items-center gap-6 text-[10px] font-mono text-slate-400 pt-2 border-t border-white/[0.04]">
+              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-[10px] font-mono text-slate-400 pt-2 border-t border-white/[0.04]">
                 <span className="flex items-center gap-1">
                   <Lock className="w-3.5 h-3.5 text-brand-orange" />
                   100% Secure Checkout
@@ -480,6 +509,8 @@ export default function App() {
                 </span>
               </div>
             </div>
+            </div>
+          </div>
           </div>
         </section>
 
@@ -502,7 +533,7 @@ export default function App() {
       <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
-        price={26.0}
+        price={19.0}
       />
     </div>
   );
