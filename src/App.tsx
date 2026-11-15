@@ -101,6 +101,30 @@ function TickingClockIcon({ className = "w-4 h-4 text-brand-orange" }: { classNa
   );
 }
 
+function BlackFridayRibbon({ className = "" }: { className?: string }) {
+  return (
+    <div className={`w-full bg-black border-y border-yellow-400/45 py-2.5 overflow-hidden select-none shadow-lg shadow-black/50 ${className}`}>
+      <div className="animate-blackfriday-marquee">
+        {[0, 1].map((loopIdx) => (
+          <div key={loopIdx} className="flex items-center shrink-0">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <span
+                key={`${loopIdx}-${i}`}
+                className="inline-flex items-center gap-3 px-4 font-display font-black text-xs sm:text-sm uppercase tracking-[0.22em]"
+              >
+                <span className="text-yellow-400">BLACK FRIDAY</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-600 inline-block" />
+                <span className="text-white">50% OFF</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 inline-block" />
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
@@ -167,6 +191,9 @@ export default function App() {
           <TickingClockIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-orange flex-shrink-0" />
         </p>
       </div>
+
+      {/* Black Friday Scrolling Ribbon below urgency bar */}
+      <BlackFridayRibbon className="relative z-40 border-t-0" />
 
       <main className="w-full space-y-24 py-12 md:py-20">
         
@@ -389,25 +416,7 @@ export default function App() {
         {/* ================= CTA BUY SECTION ================= */}
         <section id="cta-section" className="py-12 relative z-10 w-full">
           {/* Full-bleed Scrolling Black Friday Ribbon above card */}
-          <div className="w-full bg-black border-y border-yellow-400/45 py-3 overflow-hidden select-none mb-10 shadow-lg shadow-black/50">
-            <div className="animate-blackfriday-marquee">
-              {[0, 1].map((loopIdx) => (
-                <div key={loopIdx} className="flex items-center shrink-0">
-                  {Array.from({ length: 10 }).map((_, i) => (
-                    <span
-                      key={`${loopIdx}-${i}`}
-                      className="inline-flex items-center gap-3 px-4 font-display font-black text-xs sm:text-sm uppercase tracking-[0.22em]"
-                    >
-                      <span className="text-yellow-400">BLACK FRIDAY</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-600 inline-block" />
-                      <span className="text-white">BLACK FRIDAY</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 inline-block" />
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
+          <BlackFridayRibbon className="py-3 mb-10" />
 
           <div className="max-w-xl mx-auto px-6 text-center relative">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-brand-amber rounded-3xl blur-2xl opacity-10 -z-10" />
